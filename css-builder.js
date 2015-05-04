@@ -29,7 +29,8 @@ module.exports = function bundle(loads, opts) {
   var cleanCSS = new CleanCSS({
     target: loader.separateCSS ? opts.outFile : rootURL,
     relativeTo: rootURL,
-    sourceMap: opts.sourceMaps
+    sourceMap: opts.sourceMaps,
+    rebase: opts.cssRebase === false ? false : true,
   }).minify(loads.map(function(load) {
     return load.address.substr('file:'.length);
   }));
